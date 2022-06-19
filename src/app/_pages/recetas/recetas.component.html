@@ -1,0 +1,105 @@
+<div class="col-md-12 m-5 card container">
+    <div class="row m-3">
+        <div class="col-md-2">
+            <p>Buscar por Receta</p>
+        </div>
+
+        <div class="col-md-1">
+            <input type="text" pInputText [(ngModel)]="recipe" />
+        </div>
+
+        <button pButton type="button" label="Buscar" icon="pi pi-search" class="p-button-sm"
+            (click)="getRecipe()"></button>
+    </div>
+
+    <div class="row m-3">
+        <div class="col-md-2">
+            <p>Buscar por Calorias máximas</p>
+             {{rangeValues[0] + ' - ' + rangeValues[1]}}
+        </div>
+
+        <div class="col-md-1">
+            <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="0" [max]="800" [step]="10"></p-slider>
+           
+
+        </div>
+        
+        <button pButton type="button" label="Buscar " icon="pi pi-search" class="p-button-sm"
+            (click)="getByMaxCalories()"></button>
+    </div>
+
+    <div class="row m-3" *ngIf="arreglo">
+        <div class="col-md-2">
+            <p>Buscar por Cantidad de recetas</p>
+        </div>
+
+        <p-dropdown [options]="arreglo"
+        inputId="dropdown" [autoDisplayFirst]="true" autoWidth="false" placeholder="Seleccione">
+        </p-dropdown>
+
+    </div>
+
+    <div *ngIf="recipeList">
+        <p-table [value]="recipeList">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    Recetas 
+                    <p-button icon="pi pi-refresh"></p-button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-recipeList>
+                <tr>
+                    <td>{{recipeList.id}}</td>
+                    <td>{{recipeList.title}}</td>
+                    <td><img src={{recipeList.image}} width="100" class="shadow-4" /></td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    En total hay {{recipeList ? recipeList.length : 0 }} recetas.
+                </div>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div *ngIf="caloriesList">
+        <p-table [value]="caloriesList">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    Recetas
+                    <p-button icon="pi pi-refresh"></p-button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-caloriesList let-rowIndex="rowIndex">
+                <tr>
+                    <td>{{caloriesList.id}}</td>
+                    <td>{{caloriesList.title}}</td>
+                    <td><img src={{caloriesList.image}} width="100" class="shadow-4" /></td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    En total hay {{caloriesList ? caloriesList.length : 0 }} recetas.
+                </div>
+            </ng-template>
+        </p-table>
+    </div>
+
+
+
+</div>

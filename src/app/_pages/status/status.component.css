@@ -1,0 +1,23 @@
+.check{
+
+    color: green;
+
+}
+
+.legend{
+    font-size: 13px;
+}
+
+.main-header{
+    background-color: #9ecaf3;
+    height: 315px;
+    padding:2rem;
+    display:flex
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
